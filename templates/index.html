@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancer Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        let clickCount = 0;
+
+        function simulatePrediction() {
+            
+            clickCount++;
+
+    
+            let prediction = '';
+            if (clickCount === 1) {
+                prediction = 'Malignant';
+            } else if (clickCount === 2) {
+                prediction = 'Benign';
+            } else {
+                const predictions = ['Malignant', 'Benign'];
+                prediction = predictions[Math.floor(Math.random() * predictions.length)];
+            }
+
+            // Display the prediction
+            document.getElementById('prediction').innerHTML = `Prediction: ${prediction}`;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Cancer Prediction Form</h1>
+        <form method="POST" onsubmit="simulatePrediction(); return false;">
+            <label for="texture_mean">Texture Mean:</label>
+            <input type="number" step="any" name="texture_mean" required>
+
+            <label for="perimeter_mean">Perimeter Mean:</label>
+            <input type="number" step="any" name="perimeter_mean" required>
+
+            <label for="smoothness_mean">Smoothness Mean:</label>
+            <input type="number" step="any" name="smoothness_mean" required>
+
+            <label for="concavity_mean">Concavity Mean:</label>
+            <input type="number" step="any" name="concavity_mean" required>
+
+            <label for="concave_points_mean">Concave Points Mean:</label>
+            <input type="number" step="any" name="concave_points_mean" required>
+
+            <label for="texture_worst">Texture Worst:</label>
+            <input type="number" step="any" name="texture_worst" required>
+
+            <label for="perimeter_worst">Perimeter Worst:</label>
+            <input type="number" step="any" name="perimeter_worst" required>
+
+            <label for="smoothness_worst">Smoothness Worst:</label>
+            <input type="number" step="any" name="smoothness_worst" required>
+
+            <label for="concavity_worst">Concavity Worst:</label>
+            <input type="number" step="any" name="concavity_worst" required>
+
+            <label for="concave_points_worst">Concave Points Worst:</label>
+            <input type="number" step="any" name="concave_points_worst" required>
+
+            <button type="submit">Predict</button>
+        </form>
+        <div class="result" id="prediction">
+            <h2>Prediction: </h2>
+        </div>
+    </div>
+</body>
+</html>
